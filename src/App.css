@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vw;
+}
+.flex {
+  display: flex;
+}
+.flexcolumn{
+  flex-direction: column;
+}
+.wrap{
+  flex-wrap: wrap;
+}
+.vcenter {
+  align-items: center;
+}
+.hcenter {
+ justify-content: center;
+}
+.space_between{
+ justify-content: space-between;
+ width: 100%
+}
+.space_around{
+ justify-content: space-around;
+ flex-wrap: wrap;
+}
+#grid{
+  width: 100vw;
+  height: 100vh;
+}
+.space{
+  background-color: gray;
+  width: 30vmin;
+  height: 30vmin;
+  margin: 1vmin;
+  font-size: 30vmin;
+}
+.taken{
+  pointer-events: none;
+}
+.wholeScreen{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: white;
+}
