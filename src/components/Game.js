@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import base from '../rebase';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 let possible = [
   ['0','1','2'],
@@ -118,11 +119,23 @@ class Game extends Component {
     }
   }
 
-  displayError(){
+  displayError(error){
+    console.log(error);
+    let errorText;
+    switch(error){
+      case 1:
+      console.log('error 1');
+      errorText = <span>Sorry, name not found. <br/> <Link to={`/`}>Start a New Game?</Link></span>
+      break;
+      default:
+      console.log('default error');
+      errorText = 'Please Enter a Name';
+    }
     return(
       <div className="red-text">
         <h6>Error</h6>
-        {this.playerName.value==='' ? 'Please Enter a Name' : null}
+        {/* {this.playerName.value==='' ? 'Please Enter a Name' : null} */}
+        {errorText}
         <div onClick={()=>{this.setState({displayError:false})}}>X close</div>
       </div>
     )
@@ -188,6 +201,9 @@ class Game extends Component {
       this.displayBoard();
     } else {
       console.log('does not match either players')
+      this.setState({
+        displayError:true
+      })
     }
 
   }
@@ -204,7 +220,7 @@ class Game extends Component {
             </div>
           </form>
           <button onClick={this.checkIfPlayer.bind(this)}>Rejoin</button>
-          {this.state.displayError && this.displayError()}
+          {this.state.displayError && this.displayError(1)}
         </div>
       </div>
     )
