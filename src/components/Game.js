@@ -147,7 +147,6 @@ class Game extends Component {
           <form>
             <div className="input-field">
               <input id="playerName" placeholder="Please enter your Name" type="text" className="validate" ref={(input) => { this.playerName = input; }} required />
-              {/* <label htmlFor="playerName">Name</label> */}
             </div>
           </form>
           <div>Select X or O</div>
@@ -157,10 +156,6 @@ class Game extends Component {
           <div>Send this link to a friend:</div>
           <input id="gameIdLink" value={this.state.game.url} readOnly/>
           <a className="gameIdBitly waves-effect waves-light btn" data-clipboard-target="#gameIdLink"><i className="material-icons left"><i className="material-icons">content_copy</i></i>copy to clipboard</a>
-
-          {/* <button className="gameIdBitly" data-clipboard-target="#gameIdLink">
-              <img src="assets/clippy.svg" alt="Copy to clipboard"/>
-          </button> */}
           {this.state.displayError && this.displayError()}
         </div>
       </div>
@@ -182,10 +177,8 @@ class Game extends Component {
         <div>
           <h6>{gameCreator} would like to play a Game</h6>
           <form>
-            {/* <h6>Please enter your name:</h6> */}
             <div className="input-field">
               <input id="playerName" placeholder="Please enter your Name" type="text" className="validate" ref={(input) => { this.playerName = input; }} required />
-              {/* <label htmlFor="playerName">Name</label> */}
             </div>
           </form>
           <button onClick={this.selectXO.bind(this,player2Mark)}>Join</button>
@@ -233,16 +226,13 @@ class Game extends Component {
   }
 
   displayBoard(){
-    // this.setState ({ refreshGame: false })
     return(
       <div className="Board wholeScreen">
         X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}
-        {/* <br/><button onClick={this.newGame.bind(this)}>New Game</button> */}
         <br/>{this.state.game.currentMove}'s Turn <button onClick={()=>{
           base.update(`game/${this.props.match.params.gameId}/`,{
             data: {refreshGame:true}
           })
-          // // this.setState({displayError:false})
         }}>New Game</button>
 
         <div className="flex flexcolumn hcenter vcenter" id="grid">
