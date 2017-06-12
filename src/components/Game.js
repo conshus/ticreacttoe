@@ -154,7 +154,13 @@ class Game extends Component {
           <button onClick={this.selectXO.bind(this,'xPlayer')}>X</button>
           <button onClick={this.selectXO.bind(this,'oPlayer')}>O</button>
           <br/><br/>
-          <div>Send this link to a friend: {this.state.game.url}</div>
+          <div>Send this link to a friend:</div>
+          <input id="gameIdLink" value={this.state.game.url} readOnly/>
+          <a className="gameIdBitly waves-effect waves-light btn" data-clipboard-target="#gameIdLink"><i className="material-icons left"><i className="material-icons">content_copy</i></i>copy to clipboard</a>
+
+          {/* <button className="gameIdBitly" data-clipboard-target="#gameIdLink">
+              <img src="assets/clippy.svg" alt="Copy to clipboard"/>
+          </button> */}
           {this.state.displayError && this.displayError()}
         </div>
       </div>
