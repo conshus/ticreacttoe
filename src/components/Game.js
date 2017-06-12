@@ -63,7 +63,7 @@ class Game extends Component {
 
   recordMove(move){
     console.log(this, move)
-    if (this.state.playerMark === this.state.game.currentMove){
+    if (this.state.playerMark === this.state.game.currentMove && this.state.game.winner === false){
       if (this.state.game[move] === ''){
         let currentMove;
         if (this.state.playerMark === 'X') {
@@ -155,7 +155,7 @@ class Game extends Component {
           <br/><br/>
           <div>Send this link to a friend:</div>
           <input id="gameIdLink" value={this.state.game.url} readOnly/>
-          <a className="gameIdBitly waves-effect waves-light btn" data-clipboard-target="#gameIdLink"><i className="material-icons left"><i className="material-icons">content_copy</i></i>copy to clipboard</a>
+          <a className="gameIdBitly btn" data-clipboard-target="#gameIdLink"><i className="material-icons left"><i className="material-icons">content_copy</i></i>copy to clipboard</a>
           {this.state.displayError && this.displayError()}
         </div>
       </div>
