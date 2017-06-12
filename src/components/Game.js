@@ -176,11 +176,36 @@ class Game extends Component {
     )
   }
 
+  checkIfPlayer(){
+    console.log(this.playerName.value)
+    if (this.playerName.value === this.state.game.xPlayer){
+      console.log('matches x player')
+      this.setState({playerMark: 'X', step: 1})
+      this.displayBoard();
+    } else if (this.playerName.value === this.state.game.oPlayer){
+      console.log('matches o player')
+      this.setState({playerMark: 'O', step: 1})
+      this.displayBoard();
+    } else {
+      console.log('does not match either players')
+    }
+
+  }
+
   rejoinGame(){
     console.log('rejoin game');
     return(
       <div className="rejoinGame flex wholeScreen vcenter hcenter">
-        <h4>Rejoining the game?</h4>
+        <div>
+          <h4>Rejoining the game?</h4>
+          <form>
+            <div className="input-field">
+              <input id="playerName" placeholder="Please enter your Name" type="text" className="validate" ref={(input) => { this.playerName = input; }} required />
+            </div>
+          </form>
+          <button onClick={this.checkIfPlayer.bind(this)}>Rejoin</button>
+          {this.state.displayError && this.displayError()}
+        </div>
       </div>
     )
   }
