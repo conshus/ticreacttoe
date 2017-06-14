@@ -154,7 +154,7 @@ class Game extends Component {
           </form>
           <div className="flow-text">Select</div>
           <button className="flow-text" onClick={this.selectXO.bind(this,'xPlayer')}>X</button>
-          <span className="flow-text">or</span>
+          <span className="flow-text"> or </span>
           <button className="flow-text" onClick={this.selectXO.bind(this,'oPlayer')}>O</button>
           <br/><br/>
           <div className="flow-text">Send this link to a friend:</div>
@@ -232,29 +232,37 @@ class Game extends Component {
   displayBoard(){
 
     return(
-      <div className="Board wholeScreen">
-        X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}
-        <br/>{this.state.game.currentMove}'s Turn <button className="btn" onClick={()=>{
-          base.update(`game/${this.props.match.params.gameId}/`,{
-            data: {refreshGame:true}
-          })
-        }}>New Game</button>
-        <VideoChat gameId={this.props.match.params.gameId}/>
-        <div className="flex flexcolumn hcenter vcenter" id="grid">
-          <div className="flex" id="row0">
-            <div className="space flex hcenter vcenter" id="0" onClick={this.recordMove.bind(this,'0')}>{this.state.game[0]}</div>
-            <div className="space flex hcenter vcenter" id="1" onClick={this.recordMove.bind(this,'1')}>{this.state.game[1]}</div>
-            <div className="space flex hcenter vcenter" id="2" onClick={this.recordMove.bind(this,'2')}>{this.state.game[2]}</div>
+      <div className="NewGame wholeScreen">
+        <div className="row">
+          <div className="col s12 l3">
+            <VideoChat gameId={this.props.match.params.gameId}/>
+            X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}
+            <br/>{this.state.game.currentMove}'s Turn <button className="btn" onClick={()=>{
+              base.update(`game/${this.props.match.params.gameId}/`,{
+                data: {refreshGame:true}
+              })
+            }}>New Game</button>
           </div>
-          <div className="flex" id="row1">
-            <div className="space flex hcenter vcenter" id="3" onClick={this.recordMove.bind(this,'3')}>{this.state.game[3]}</div>
-            <div className="space flex hcenter vcenter" id="4" onClick={this.recordMove.bind(this,'4')}>{this.state.game[4]}</div>
-            <div className="space flex hcenter vcenter" id="5" onClick={this.recordMove.bind(this,'5')}>{this.state.game[5]}</div>
-          </div>
-          <div className="flex" id="row2">
-            <div className="space flex hcenter vcenter" id="6" onClick={this.recordMove.bind(this,'6')}>{this.state.game[6]}</div>
-            <div className="space flex hcenter vcenter" id="7" onClick={this.recordMove.bind(this,'7')}>{this.state.game[7]}</div>
-            <div className="space flex hcenter vcenter" id="8" onClick={this.recordMove.bind(this,'8')}>{this.state.game[8]}</div>
+          <div className="col s12 l9">
+            <div className="Board">
+              <div className="flex flexcolumn vcenter" id="grid">
+                <div className="flex" id="row0">
+                  <div className="space flex hcenter vcenter" id="0" onClick={this.recordMove.bind(this,'0')}>{this.state.game[0]}</div>
+                  <div className="space flex hcenter vcenter" id="1" onClick={this.recordMove.bind(this,'1')}>{this.state.game[1]}</div>
+                  <div className="space flex hcenter vcenter" id="2" onClick={this.recordMove.bind(this,'2')}>{this.state.game[2]}</div>
+                </div>
+                <div className="flex" id="row1">
+                  <div className="space flex hcenter vcenter" id="3" onClick={this.recordMove.bind(this,'3')}>{this.state.game[3]}</div>
+                  <div className="space flex hcenter vcenter" id="4" onClick={this.recordMove.bind(this,'4')}>{this.state.game[4]}</div>
+                  <div className="space flex hcenter vcenter" id="5" onClick={this.recordMove.bind(this,'5')}>{this.state.game[5]}</div>
+                </div>
+                <div className="flex" id="row2">
+                  <div className="space flex hcenter vcenter" id="6" onClick={this.recordMove.bind(this,'6')}>{this.state.game[6]}</div>
+                  <div className="space flex hcenter vcenter" id="7" onClick={this.recordMove.bind(this,'7')}>{this.state.game[7]}</div>
+                  <div className="space flex hcenter vcenter" id="8" onClick={this.recordMove.bind(this,'8')}>{this.state.game[8]}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

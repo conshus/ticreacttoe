@@ -32,6 +32,7 @@ class VideoChat extends Component {
        container.id = 'container_' + this.webrtc.getDomId(peer);
        container.appendChild(video);
        // suppress contextmenu
+       video.classBane = "responsive-video";
        video.oncontextmenu = function() {
          return false;
        };
@@ -64,8 +65,14 @@ class VideoChat extends Component {
   render(){
     return(
       <div className="VideoChat">
-        <video className="local responsive-video" height="300" id="localVideo" ref = "local"></video>
-        <div className="remotes" id="remotesVideos" ref = "remotes"></div>
+        <div className="row">
+          <div className="col s6 l12">
+            <video className="local responsive-video" height="300" id="localVideo" ref = "local"></video>
+          </div>
+          <div className="col s6 l12">
+            <div className="remotes" id="remotesVideos" ref = "remotes"></div>
+          </div>
+        </div>
       </div>
     )
   }
