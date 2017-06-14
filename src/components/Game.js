@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import base from '../rebase';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import VideoChat from './VideoChat';
 
 let possible = [
   ['0','1','2'],
@@ -25,6 +26,7 @@ class Game extends Component {
       displayError: false,
       opponent: '',
     }
+
   }
   componentDidMount(){
     console.log(this.props.match.params.gameId)
@@ -44,6 +46,7 @@ class Game extends Component {
         });
       }
     })
+
   }
 
   didIWin(playerMark, myMoves){
@@ -226,6 +229,7 @@ class Game extends Component {
   }
 
   displayBoard(){
+
     return(
       <div className="Board wholeScreen">
         X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}
@@ -234,7 +238,7 @@ class Game extends Component {
             data: {refreshGame:true}
           })
         }}>New Game</button>
-
+        <VideoChat gameId={this.props.match.params.gameId}/>
         <div className="flex flexcolumn hcenter vcenter" id="grid">
           <div className="flex" id="row0">
             <div className="space flex hcenter vcenter" id="0" onClick={this.recordMove.bind(this,'0')}>{this.state.game[0]}</div>
@@ -265,6 +269,8 @@ class Game extends Component {
   newGame(){
     myMoves=[];
     console.log('myMoves:',myMoves)
+    console.log(document.querySelectorAll('.space'))
+    //document.querySelectorAll('.space').style.color ="black";
     document.getElementById('0').style.color ="black";
     document.getElementById('1').style.color ="black";
     document.getElementById('2').style.color ="black";
