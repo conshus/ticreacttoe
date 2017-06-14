@@ -305,7 +305,7 @@ class Game extends Component {
     console.log(this.state.game.winner)
     return (
       <div className="Game">
-        {(this.state.game.oPlayer!=='' || this.state.game.xPlayer !=='') && this.displayBoard()}
+        {(this.state.game.oPlayer!=='' && this.state.game.xPlayer !=='') && this.displayBoard()}
         {((this.state.step===0 || this.state.step===1) && (this.state.game.oPlayer==='' || this.state.game.xPlayer ==='')) && this.setPlayers()}
         {(this.state.step===0 && (this.state.game.oPlayer!=='' || this.state.game.xPlayer !=='')) && this.joinGame()}
         {(this.state.game.winner && this.state.game.winningPositions[0] !== '') && this.displayWinner()}

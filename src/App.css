@@ -4,7 +4,8 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  /*height: 80px;*/
+  height: 15vw;
 }
 
 .App-header {
@@ -55,6 +56,7 @@ html, body {
   height: 100vh;
 }
 .space{
+  border-radius: 10px;
   background-color: gray;
   width: 30vmin;
   height: 30vmin;
@@ -69,4 +71,181 @@ html, body {
   height: 100vh;
   position: absolute;
   background-color: white;
+}
+/*Front page styling*/
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+h1{
+  width:100%;
+  font-size: 10vw;
+  text-align: center;
+  /*margin: 60px auto 0px;*/
+  margin: 0px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: Righteous;
+  color: white;
+  max-width: 1150px;
+  text-shadow: -1px 0 0px #ddd, 0 1px 0px #ccc, -2px 1px 0px #ccc, -1px 2px 0px #ccc, -3px 2px 0px #ccc, -2px 3px 0px #ccc, -4px 3px 0px #ccc, -3px 4px 0px #ccc, -5px 4px 0px #ccc, -4px 5px 0px #ccc, -6px 5px 0px #ccc, -5px 6px 15px #777;
+  display: inline-block;
+  position: relative;
+  padding: 0px 6px;
+  transition: 0.8s;
+  transform: rotateX( 0deg ) rotateY( 0deg ) rotateZ( 0deg );
+}
+
+/*Table styling https://www.coding123.org/make-responsive-tic-tac-toe-board/*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  position:relative;
+}
+
+td {
+  width: 33.333%;
+  border: 6px solid #222;
+}
+/*td::after {
+  content: '';
+  display: block;
+  margin-top: 100%;
+}*/
+
+td {
+  border: 6px solid #222;
+}
+
+td:first-of-type {
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+td:nth-of-type(2) {
+  border-top-color: transparent;
+}
+
+td:nth-of-type(3) {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+tr:nth-of-type(3) td {
+  border-bottom-color: transparent;
+}
+
+
+
+.ribbon {
+ font-size: 2vw !important;
+ /* This ribbon is based on a 16px font side and a 24px vertical rhythm. I've used em's to position each element for scalability. If you want to use a different font size you may have to play with the position of the ribbon elements */
+
+ width: 50%;
+
+ position: relative;
+ background: #ba89b6;
+ color: #fff;
+ text-align: center;
+ padding: 1em 2em; /* Adjust to suit */
+ margin: 2em auto 3em; /* Based on 24px vertical rhythm. 48px bottom margin - normally 24 but the ribbon 'graphics' take up 24px themselves so we double it. */
+}
+.ribbon:before, .ribbon:after {
+ content: "";
+ position: absolute;
+ display: block;
+ bottom: -1em;
+ border: 1.5em solid #986794;
+ z-index: -1;
+}
+.ribbon:before {
+ left: -2em;
+ border-right-width: 1.5em;
+ border-left-color: transparent;
+}
+.ribbon:after {
+ right: -2em;
+ border-left-width: 1.5em;
+ border-right-color: transparent;
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+ content: "";
+ position: absolute;
+ display: block;
+ border-style: solid;
+ border-color: #804f7c transparent transparent transparent;
+ bottom: -1em;
+}
+.ribbon .ribbon-content:before {
+ left: 0;
+ border-width: 1em 0 0 1em;
+}
+.ribbon .ribbon-content:after {
+ right: 0;
+ border-width: 1em 1em 0 0;
+}
+
+/*http://enjoycss.com/*/
+.round-star-label {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 10vw;
+  height: 10vw;
+  /*position: relative;*/
+  position: absolute;
+  right:0;
+  bottom:-4vw;
+  border: none;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #61dafb;
+}
+
+.round-star-label .label-text {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.round-star-label::before {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  border: none;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #61dafb;
+  text-shadow: none;
+  -webkit-transform: rotateZ(30deg)   ;
+  transform: rotateZ(30deg)   ;
+}
+
+.round-star-label::after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  border: none;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #61dafb;
+  text-shadow: none;
+  -webkit-transform: rotateZ(60deg)   ;
+  transform: rotateZ(60deg)   ;
 }

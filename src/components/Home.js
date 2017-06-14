@@ -53,8 +53,36 @@ class Home extends Component {
     return (
       <div className="Home wholeScreen flex hcenter vcenter">
         <div>
-          <h1>Tic <img src={logo} className="App-logo" alt="spinning React Logo" /> Toe</h1>
-          <button className="waves-effect waves-light btn" onClick={this.startAGame.bind(this)}>Start a Game</button>
+
+
+          <div id="board">
+              <table>
+                <tbody>
+                  <tr id="row1">
+                    <td><h1>T</h1></td>
+                    <td><h1>I</h1></td>
+                    <td><h1>C</h1></td>
+                  </tr>
+                  <tr id="row2">
+                    <td></td>
+                    <td><img src={logo} className="App-logo" alt="spinning React Logo" /></td>
+                    <td></td>
+                  </tr>
+                  <tr id="row3">
+                    <td><h1>T</h1></td>
+                    <td><h1>O</h1></td>
+                    <td><h1>E</h1></td>
+                  </tr>
+                  <span className="round-star-label"><span className="label-text">PLUS<br/>video<br/>chat!</span></span>
+                </tbody>
+              </table>
+            </div>
+            {/* <h2 className="ribbon">
+               <strong className="ribbon-content">Everybody loves ribbons</strong>
+            </h2> */}
+
+          {/* <h1>T i c <img src={logo} className="App-logo" alt="spinning React Logo" /> Toe</h1> */}
+          <br/><button className="waves-effect waves-light btn" onClick={this.startAGame.bind(this)}>Start a Game</button>
         </div>
       </div>
     )
