@@ -64,7 +64,7 @@ class VideoChat extends Component {
   render(){
     return(
       <div className="VideoChat">
-        <video className="local" height="300" id="localVideo" ref = "local"></video>
+        <video className="local responsive-video" height="300" id="localVideo" ref = "local"></video>
         <div className="remotes" id="remotesVideos" ref = "remotes"></div>
       </div>
     )

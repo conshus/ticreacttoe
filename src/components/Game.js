@@ -149,14 +149,15 @@ class Game extends Component {
         <div>
           <form>
             <div className="input-field">
-              <input id="playerName" placeholder="Please enter your Name" type="text" className="validate" ref={(input) => { this.playerName = input; }} required />
+              <input id="playerName" placeholder="Please enter your Name" type="text" className="validate flow-text" ref={(input) => { this.playerName = input; }} required />
             </div>
           </form>
-          <div>Select X or O</div>
-          <button onClick={this.selectXO.bind(this,'xPlayer')}>X</button>
-          <button onClick={this.selectXO.bind(this,'oPlayer')}>O</button>
+          <div className="flow-text">Select</div>
+          <button className="flow-text" onClick={this.selectXO.bind(this,'xPlayer')}>X</button>
+          <span className="flow-text">or</span>
+          <button className="flow-text" onClick={this.selectXO.bind(this,'oPlayer')}>O</button>
           <br/><br/>
-          <div>Send this link to a friend:</div>
+          <div className="flow-text">Send this link to a friend:</div>
           <input id="gameIdLink" value={this.state.game.url} readOnly/>
           <a className="gameIdBitly btn" data-clipboard-target="#gameIdLink"><i className="material-icons left"><i className="material-icons">content_copy</i></i>copy to clipboard</a>
           {this.state.displayError && this.displayError()}
@@ -178,13 +179,13 @@ class Game extends Component {
     return(
       <div className="joinGame flex wholeScreen vcenter hcenter">
         <div>
-          <h6>{gameCreator} would like to play a Game</h6>
+          <h6 className="flow-text">{gameCreator} would like to play a Game</h6>
           <form>
             <div className="input-field">
               <input id="playerName" placeholder="Please enter your Name" type="text" className="validate" ref={(input) => { this.playerName = input; }} required />
             </div>
           </form>
-          <button onClick={this.selectXO.bind(this,player2Mark)}>Join</button>
+          <button className="btn" onClick={this.selectXO.bind(this,player2Mark)}>Join</button>
           {this.state.displayError && this.displayError()}
         </div>
       </div>
@@ -215,13 +216,13 @@ class Game extends Component {
     return(
       <div className="rejoinGame flex wholeScreen vcenter hcenter">
         <div>
-          <h4>Rejoining the game?</h4>
+          <h4 className="flow-text">Rejoining the game?</h4>
           <form>
             <div className="input-field">
               <input id="playerName" placeholder="Please enter your Name" type="text" className="validate" ref={(input) => { this.playerName = input; }} required />
             </div>
           </form>
-          <button onClick={this.checkIfPlayer.bind(this)}>Rejoin</button>
+          <button className="btn" onClick={this.checkIfPlayer.bind(this)}>Rejoin</button>
           {this.state.displayError && this.displayError(1)}
         </div>
       </div>
@@ -233,7 +234,7 @@ class Game extends Component {
     return(
       <div className="Board wholeScreen">
         X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}
-        <br/>{this.state.game.currentMove}'s Turn <button onClick={()=>{
+        <br/>{this.state.game.currentMove}'s Turn <button className="btn" onClick={()=>{
           base.update(`game/${this.props.match.params.gameId}/`,{
             data: {refreshGame:true}
           })

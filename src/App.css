@@ -72,6 +72,16 @@ html, body {
   position: absolute;
   background-color: white;
 }
+
+.btn {
+  height: 3rem;
+  line-height: 1.5rem;
+  padding: 1rem 2rem;
+}
+video {
+  max-width:100%;
+  height: auto;
+}
 /*Front page styling*/
 @import url(https://fonts.googleapis.com/css?family=Righteous);
 h1{
