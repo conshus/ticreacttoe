@@ -32,10 +32,11 @@ class WebRTC extends Component {
       context: this,
       asArray: true,
       then(results){
-        results.forEach((result, index) => {
-          //console.log('result:',result)
-          this.readMessage(result)
-        });
+        console.log(results)
+         results.forEach((result, index) => {
+        //   //console.log('result:',result)
+           this.readMessage(result)
+         });
       }
     })
 
@@ -51,6 +52,9 @@ class WebRTC extends Component {
     navigator.mediaDevices.getUserMedia({audio:true, video:true})
         .then(stream => yourVideo.srcObject = stream)
         .then(stream => pc.addStream(stream));
+
+    this.sendMessage = this.sendMessage.bind(this);
+    this.readMessage = this.readMessage.bind(this);
   }
 
   sendMessage(senderId, data) {
@@ -59,37 +63,43 @@ class WebRTC extends Component {
     var immediatelyAvailableReference = base.push(`WebRTC/${this.props.gameId}`, {
       data: {sender: senderId, message: data},
       then(err){
+        // base.remove(`WebRTC/${this.props.gameId}`, function(err){
+        //   if(!err){
+        //     //Router.transitionTo('dashboard');
+        //   }
+        // });
       }
     });
     // msg.remove();
-  //   base.remove(`WebRTC/${this.props.gameId}`, function(err){
-  //   if(!err){
-  //     //Router.transitionTo('dashboard');
-  //   }
-  // });
+    // base.remove(`WebRTC/${this.props.gameId}`, function(err){
+    //   if(!err){
+    //     //Router.transitionTo('dashboard');
+    //   }
+    // });
   }
 
   readMessage(data) {
     // var msg = JSON.parse(data.val().message);
     // var sender = data.val().sender;
+    console.log(data)
     var msg = JSON.parse(data.message);
     var sender = data.sender;
-    // console.log('msg:', JSON.parse(data.message))
+    console.log('msg:', JSON.parse(data.message))
     // console.log('yourId:', yourId)
     // console.log('sender:',sender)
     if (sender !== yourId) {
         if (msg.ice !== undefined){
-            //pc.addIceCandidate(new RTCIceCandidate(msg.ice));
+            pc.addIceCandidate(new RTCIceCandidate(msg.ice));
             console.log('msg.ice:',msg.ice)
             console.log('RTCIceCandidate(msg.ice):',new RTCIceCandidate(msg.ice))
             }
         else if (msg.sdp.type === "offer"){
           console.log('msg.sdp.type:', msg.sdp.type)
-            // pc.setRemoteDescription(new RTCSessionDescription(msg.sdp))
-            //   .then(() => pc.createAnswer())
-            //   //.then(answer => console.log('answer:',answer))
-            //   .then(answer => pc.setLocalDescription(answer))
-            //   .then(() => this.sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})));
+            pc.setRemoteDescription(new RTCSessionDescription(msg.sdp))
+              .then(() => pc.createAnswer())
+              //.then(answer => console.log('answer:',answer))
+              .then(answer => pc.setLocalDescription(answer))
+              .then(() => this.sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})));
             }
         else if (msg.sdp.type === "answer"){
           console.log('msg.sdp.type:', msg.sdp.type)
@@ -113,7 +123,7 @@ class WebRTC extends Component {
     console.log('yourId:',yourId)
     return(
       <div className="WebRTC">
-        <button onClick={this.showFriendsFace()} type="button">Call</button>
+        <button onClick={this.showFriendsFace.bind(this)} type="button">Call</button>
         <div className="row">
           <div className="col s6 l12">
             <video id="yourVideo" autoPlay muted></video>
