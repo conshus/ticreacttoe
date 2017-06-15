@@ -232,7 +232,7 @@ class Game extends Component {
           <span className="flow-text"> or </span>
           <button className="flow-text" onClick={this.selectXO.bind(this,'oPlayer')}>O</button>
           <br/><br/>
-          <div className="flow-text">Send this link to a friend:</div>
+          <div className="flow-text">Send this link to a friend to start game:</div>
           <input id="gameIdLink" value={this.state.game.url} readOnly/>
           <a className="gameIdBitly btn" data-clipboard-target="#gameIdLink"><i className="material-icons left"><i className="material-icons">content_copy</i></i>copy to clipboard</a>
           {this.state.displayError && this.displayError()}
