@@ -121,7 +121,10 @@ class WebRTC extends Component {
   }
 
 
-
+  makeTheCall(){
+    console.log('makeTheCall',document.getElementById("callButton"))
+    //document.getElementById("callButton").click();
+  }
 
 
   render(){
@@ -129,8 +132,8 @@ class WebRTC extends Component {
     console.log('makeTheCall:',this.props.makeTheCall, this.state.makeTheCall)
     return(
       <div className="WebRTC">
-        {this.state.makeTheCall==='true' && this.showFriendsFace.bind(this)}
-        <button onClick={this.showFriendsFace.bind(this)} type="button">Call</button>
+        <button onClick={this.showFriendsFace.bind(this)} type="button" id="callButton">Call</button>
+        {this.state.makeTheCall==='true' && this.makeTheCall()}
         <div className="row">
           <div className="col s6 l12">
             <video id="yourVideo" autoPlay muted></video>
