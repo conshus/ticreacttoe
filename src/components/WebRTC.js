@@ -6,12 +6,12 @@ var servers = {'iceServers': [{'url': 'stun:stun.services.mozilla.com'}, {'url':
 var yourId = Math.floor(Math.random()*1000000000);
 var pc = new RTCPeerConnection(servers);
 
-
+var counter = 0;
 class WebRTC extends Component {
   constructor (props){
     super(props);
     this.state ={
-      WebRTC:{}
+      makeTheCall:this.props.makeTheCall
     }
   }
 
@@ -55,21 +55,25 @@ class WebRTC extends Component {
 
     this.sendMessage = this.sendMessage.bind(this);
     this.readMessage = this.readMessage.bind(this);
+    this.showFriendsFace = this.showFriendsFace.bind(this);
   }
 
   sendMessage(senderId, data) {
     //var msg = base.push({ sender: senderId, message: data });
     console.log('senderId, data:',senderId, data)
+  if (this.state.makeTheCall === 'true'){
     var immediatelyAvailableReference = base.push(`WebRTC/${this.props.gameId}`, {
       data: {sender: senderId, message: data},
       then(err){
-        base.remove(`WebRTC/${this.props.gameId}/immediatelyAvailableReference.key`, function(err){
-          if(!err){
-            //Router.transitionTo('dashboard');
-          }
-        });
+        // base.remove(`WebRTC/${this.props.gameId}/immediatelyAvailableReference.key`, function(err){
+        //   if(!err){
+        //     //Router.transitionTo('dashboard');
+        //   }
+        // });
       }
     });
+    this.setState({makeTheCall:false})
+  }
     //msg.remove();
     // base.remove(`WebRTC/${this.props.gameId}`, function(err){
     //   if(!err){
@@ -110,6 +114,7 @@ class WebRTC extends Component {
   };
 
   showFriendsFace() {
+    console.log('showFriendsFace:',this)
     pc.createOffer()
       .then(offer => pc.setLocalDescription(offer) )
       .then(() => this.sendMessage(yourId, JSON.stringify({'sdp': pc.localDescription})) );
@@ -121,8 +126,10 @@ class WebRTC extends Component {
 
   render(){
     console.log('yourId:',yourId)
+    console.log('makeTheCall:',this.props.makeTheCall, this.state.makeTheCall)
     return(
       <div className="WebRTC">
+        {this.state.makeTheCall==='true' && this.showFriendsFace.bind(this)}
         <button onClick={this.showFriendsFace.bind(this)} type="button">Call</button>
         <div className="row">
           <div className="col s6 l12">
