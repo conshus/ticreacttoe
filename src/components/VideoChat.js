@@ -12,6 +12,7 @@ class VideoChat extends Component {
     this.webrtc = new window.SimpleWebRTC({
       localVideoEl: ReactDOM.findDOMNode(this.refs.local),
       remoteVideosEl: "",
+      //remoteVideosEl: ReactDOM.findDOMNode(this.refs.remote),
       autoRequestMedia: true
       //url: 'https://your-production-signalserver.com/'
     });
@@ -32,7 +33,7 @@ class VideoChat extends Component {
        container.id = 'container_' + this.webrtc.getDomId(peer);
        container.appendChild(video);
        // suppress contextmenu
-       video.classBane = "responsive-video";
+       video.className = "responsive-video";
        video.oncontextmenu = function() {
          return false;
        };
@@ -71,6 +72,7 @@ class VideoChat extends Component {
           </div>
           <div className="col s6 l12">
             <div className="remotes" id="remotesVideos" ref = "remotes"></div>
+            {/* <video className="remote responsive-video" height="300" id="remoteVideo" ref = "remote"></video> */}
           </div>
         </div>
       </div>

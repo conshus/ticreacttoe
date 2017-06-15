@@ -75,14 +75,14 @@ html, body {
 }
 
 .btn {
-  height: 3rem;
+  height: auto;
   line-height: 1.5rem;
   padding: 1rem 2rem;
 }
 video {
   /*max-width:100%;*/
   width:200px;
-  height: auto;
+  height: 150px;
 }
 .videoContainer {
     position: relative;
@@ -91,13 +91,13 @@ video {
 }
 .videoContainer video {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 150px;
 }
 .row {
   margin-bottom: 0;
 }
-/*Front page styling*/
+/*Front page styling https://codepen.io/billionbd/pen/dPPpqw*/
 @import url(https://fonts.googleapis.com/css?family=Righteous);
 h1{
   width:100%;

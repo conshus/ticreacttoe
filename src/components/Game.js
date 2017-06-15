@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import base from '../rebase';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import VideoChat from './VideoChat';
+//import VideoChat from './VideoChat';
+import WebRTC from './WebRTC';
+// import ReactDOM from 'react-dom';
+
+
 
 let possible = [
   ['0','1','2'],
@@ -27,6 +31,12 @@ class Game extends Component {
       opponent: '',
     }
 
+    // this.addVideo = this.addVideo.bind(this);
+    // this.removeVideo = this.removeVideo.bind(this);
+    // this.readyToCall = this.readyToCall.bind(this);
+
+
+
   }
   componentDidMount(){
     console.log(this.props.match.params.gameId)
@@ -37,7 +47,7 @@ class Game extends Component {
       then(results){
         axios.get(`https://api-ssl.bitly.com/v3/shorten?access_token=f98a5451d060cb4b77ed81efcd3d430992f25a7e&longUrl=https%3A%2F%2Ftictactoe-713bc.firebaseapp.com%2Fgame%2F${this.props.match.params.gameId}`)
         .then(response => {
-          base.update(`game/${this.props.match.params.gameId}/`,{
+          base.update(`game/${this.props.match.params.gameId}`,{
             data: {url:response.data.data.url}
           })
         })
@@ -47,14 +57,79 @@ class Game extends Component {
       }
     })
 
+
+    // this.webrtc = new window.SimpleWebRTC({
+    //   localVideoEl: ReactDOM.findDOMNode(this.refs.local),
+    //   remoteVideosEl: "",
+    //   autoRequestMedia: true
+    //   //url: 'https://your-production-signalserver.com/'
+    // });
+    // console.log("webrtc component mounted");
+    // this.webrtc.on('videoAdded', this.addVideo);
+    // this.webrtc.on('videoRemoved', this.removeVideo);
+    // this.webrtc.on('readyToCall', this.readyToCall);
+
+
+
+
   }
+
+
+// video chat start
+
+// addVideo(video, peer) {
+//    console.log('video added', peer);
+//    //  console.log(this.refs.remotes);
+//    var remotes = ReactDOM.findDOMNode(this.refs.remotes);
+//    console.log(remotes);
+//    if (remotes) {
+//      var container = document.createElement('div');
+//      container.className = 'videoContainer';
+//      container.id = 'container_' + this.webrtc.getDomId(peer);
+//      container.appendChild(video);
+//      // suppress contextmenu
+//      video.classBane = "responsive-video";
+//      video.oncontextmenu = function() {
+//        return false;
+//      };
+//      console.log(container);
+//      remotes.appendChild(container);
+//    }
+// }
+//
+// removeVideo(video, peer) {
+//   console.log('video removed ', peer);
+//   var remotes = ReactDOM.findDOMNode(this.refs.remotes);
+//   var el = document.getElementById(peer ? 'container_' +       this.webrtc.getDomId(peer) : 'localScreenContainer');
+//   if (remotes && el) {
+//     remotes.removeChild(el);
+//   }
+// }
+//
+// readyToCall() {
+//   return this.webrtc.joinRoom(this.props.gameId);
+// }
+//
+// connect() {
+//   console.log("connected");
+// }
+//
+// disconnect() {
+//   console.log("disconnected");
+// }
+//
+
+
+
+// video chat end
+
 
   didIWin(playerMark, myMoves){
     console.log('didIWin:',playerMark, myMoves, possible)
     for (let i=0; i<possible.length; i++){
       if ((myMoves.indexOf(possible[i][0]) !== -1) && (myMoves.indexOf(possible[i][1]) !== -1) && (myMoves.indexOf(possible[i][2]) !== -1)){
         console.log(playerMark,"you win!");
-        base.update(`game/${this.props.match.params.gameId}/`,{
+        base.update(`game/${this.props.match.params.gameId}`,{
           data: {winner:true}
         })
         base.update(`game/${this.props.match.params.gameId}/winningPositions`,{
@@ -74,7 +149,7 @@ class Game extends Component {
         } else {
           currentMove = 'X'
         }
-        base.update(`game/${this.props.match.params.gameId}/`,{
+        base.update(`game/${this.props.match.params.gameId}`,{
           data: {
             [move]:this.state.playerMark,
             currentMove: currentMove
@@ -98,7 +173,7 @@ class Game extends Component {
   selectXO(selected){
     console.log(this,this.playerName.value,selected)
     if (this.playerName.value !== ''){
-      base.update(`game/${this.props.match.params.gameId}/`,{
+      base.update(`game/${this.props.match.params.gameId}`,{
         data: {[selected]:this.playerName.value}
       }).then(() => {
         let playerMark;
@@ -235,7 +310,22 @@ class Game extends Component {
       <div className="NewGame wholeScreen">
         <div className="row">
           <div className="col s12 l3">
-            <VideoChat gameId={this.props.match.params.gameId}/>
+
+
+            {/* <div className="VideoChat">
+              <div className="row">
+                <div className="col s6 l12">
+                  <video className="local responsive-video" height="300" id="localVideo" ref = "local"></video>
+                </div>
+                <div className="col s6 l12">
+                  <div className="remotes" id="remotesVideos" ref = "remotes"></div>
+                </div>
+              </div>
+            </div> */}
+
+
+            {/* <VideoChat gameId={this.props.match.params.gameId}/> */}
+            <WebRTC gameId={this.props.match.params.gameId}/>
             X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}
             <br/>{this.state.game.currentMove}'s Turn <button className="btn" onClick={()=>{
               base.update(`game/${this.props.match.params.gameId}/`,{
