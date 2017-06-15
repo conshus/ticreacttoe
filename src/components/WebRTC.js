@@ -63,14 +63,14 @@ class WebRTC extends Component {
     var immediatelyAvailableReference = base.push(`WebRTC/${this.props.gameId}`, {
       data: {sender: senderId, message: data},
       then(err){
-        // base.remove(`WebRTC/${this.props.gameId}`, function(err){
-        //   if(!err){
-        //     //Router.transitionTo('dashboard');
-        //   }
-        // });
+        base.remove(`WebRTC/${this.props.gameId}/immediatelyAvailableReference.key`, function(err){
+          if(!err){
+            //Router.transitionTo('dashboard');
+          }
+        });
       }
     });
-    // msg.remove();
+    //msg.remove();
     // base.remove(`WebRTC/${this.props.gameId}`, function(err){
     //   if(!err){
     //     //Router.transitionTo('dashboard');
