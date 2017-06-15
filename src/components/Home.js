@@ -73,7 +73,7 @@ class Home extends Component {
                     <td><h1>O</h1></td>
                     <td><h1>E</h1></td>
                   </tr>
-                  <span className="round-star-label"><span className="label-text">PLUS<br/>video<br/>chat!</span></span>
+                  <span className="round-star-label"><span className="label-text">NOW<br/>with<br/>video<br/>chat!</span></span>
                 </tbody>
               </table>
             </div>

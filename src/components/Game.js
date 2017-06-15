@@ -326,8 +326,9 @@ class Game extends Component {
 
             {/* <VideoChat gameId={this.props.match.params.gameId}/> */}
             <WebRTC gameId={this.props.match.params.gameId} makeTheCall='true' />
-            X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}
-            <br/>{this.state.game.currentMove}'s Turn <button className="btn" onClick={()=>{
+            <h6>X: {this.state.game.xPlayer} | O: {this.state.game.oPlayer}</h6>
+            <br/>{this.state.game.currentMove}'s Turn
+            <br/><button className="btn" onClick={()=>{
               base.update(`game/${this.props.match.params.gameId}/`,{
                 data: {refreshGame:true}
               })
